@@ -1,5 +1,5 @@
-NAME = phusion/passenger
-VERSION = 1.0.6
+NAME = quay.io/untappd/docker_ruby
+VERSION = 1.1.0
 # Extra flags for docker build, usable via environment variable.
 # Example: `export EXTRA_BUILD_FLAGS=--no-cache; make build_all`
 EXTRA_BUILD_FLAGS?=
@@ -50,6 +50,8 @@ build_ruby26:
 	rm -rf ruby26_image
 	cp -pR image ruby26_image
 	echo ruby26=1 >> ruby26_image/buildconfig
+	echo nodejs=1 >> ruby26_image/buildconfig
+	echo python=1 >> ruby26_image/buildconfig
 	echo final=1 >> ruby26_image/buildconfig
 	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME)-ruby26:$(VERSION) --rm ruby26_image --no-cache
 
